@@ -15,6 +15,8 @@ class App extends React.Component {
     }
     this.currentContent = null
     this.weekContent = null
+
+    this.changeLocation = this.changeLocation.bind(this)
   }
 
   componentDidMount() {
@@ -26,26 +28,36 @@ class App extends React.Component {
     this.weekContent = this.updateWeekContent()
   }
 
-  getLocation() {
-    if(window.navigator.geolocation)  {
-      window.navigator.geolocation.getCurrentPosition(
-        (location) => this.callApi(location),
-        (err) => console.log(err),
-      )
+  getLocation(loc) {
+    if (!loc) {
+      if(window.navigator.geolocation)  {
+        window.navigator.geolocation.getCurrentPosition(
+          (location) => this.callApi({
+              latitude: location.coords.latitude,
+              longitude: location.coords.latitude
+            }),
+          (err) => console.log(err),
+        )
+      }
+    } else {
+      const location = {
+        latitude: loc.geometry.location.lat,
+        longitude: loc.geometry.location.lng
+      }
+      this.callApi(location)
     }
   }
 
   callApi(location) {
     axios.post('http://localhost:9000/weather', {
-      latitude: JSON.stringify(location.coords.latitude,),
-      longitude: JSON.stringify(location.coords.longitude)
+      latitude: JSON.stringify(location.latitude,),
+      longitude: JSON.stringify(location.longitude)
     })
     .then(result => this.updateState(result.data))
     .catch(error => console.log('error', error))
   }
 
   updateState({currently, daily}) {
-    console.log(currently, daily)
     this.setState({
       currentConditions: {
         temperature: currently.temperature,
@@ -77,7 +89,7 @@ class App extends React.Component {
         apparentTemp={this.state.currentConditions.apparentTemp}
         summary={this.state.currentConditions.summary}
         windSpeed={this.state.currentConditions.windSpeed}
-        gust={this.state.gust}
+        gust={this.state.currentConditions.gust}
         windBearing={this.state.currentConditions.windBearing} />
     )
   }
@@ -95,10 +107,25 @@ class App extends React.Component {
       )
     })
   }
+  // refactor into seperate component
+  // hardcoded button to wellington - todo: make autocomplete field
+  changeLocation() {
+    axios.post('http://localhost:9000/location', {
+      town: 'wellington+NZ'
+    })
+    .then(res => this.getLocation(res.data.results[0]))
+    .catch(error => console.log('error', error))
+  }
+
   
   render() {
     return (
       <div>
+          <button onClick={this.changeLocation}>Wellington</button>
+        <div>
+        <div id="map"></div>
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB85kTWqZHLeX_lc9aPMfg539ME280awPk&callback=initMap" async defer></script>
+        </div>
         {this.updateCurrentContent()}
         {this.updateWeekContent()}
       </div>
