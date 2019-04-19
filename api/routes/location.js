@@ -12,12 +12,11 @@ router.post('/', function(req, res) {
   console.log(`${baseUrl}&key=${secret}`)
   axios.get(`${baseUrl}address=${req.body.town}&key=${secret}`)
     .then(response => {
-      console.log(response)
       res.send(response.data)
     })
     .catch(err => {
-      console.log(error)
-      res.send({error});
+      console.log(err.response.data)
+      res.send(err.response.data);
     });
 });
 

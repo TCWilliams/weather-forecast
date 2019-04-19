@@ -32,7 +32,7 @@ class App extends React.Component {
     if (!loc) {
       if(window.navigator.geolocation)  {
         window.navigator.geolocation.getCurrentPosition(
-          (location) => this.callApi({
+          (location) => this.getWeatherData({
               latitude: location.coords.latitude,
               longitude: location.coords.latitude
             }),
@@ -44,11 +44,11 @@ class App extends React.Component {
         latitude: loc.geometry.location.lat,
         longitude: loc.geometry.location.lng
       }
-      this.callApi(location)
+      this.getWeatherData(location)
     }
   }
 
-  callApi(location) {
+  getWeatherData(location) {
     axios.post('http://localhost:9000/weather', {
       latitude: JSON.stringify(location.latitude,),
       longitude: JSON.stringify(location.longitude)
@@ -107,13 +107,19 @@ class App extends React.Component {
       )
     })
   }
-  // refactor into seperate component
-  // hardcoded button to wellington - todo: make autocomplete field
+  /* TODO:
+  refactor into seperate component
+  hardcoded button to wellington 
+  make autocomplete field
+  */
   changeLocation() {
     axios.post('http://localhost:9000/location', {
       town: 'wellington+NZ'
     })
-    .then(res => this.getLocation(res.data.results[0]))
+    .then(({data}) => this.getWeatherData({
+      latitude: data.results[0].geometry.location.lat,
+      longitude: data.results[0].geometry.location.lng
+    }))
     .catch(error => console.log('error', error))
   }
 
