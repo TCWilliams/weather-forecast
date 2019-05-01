@@ -1,0 +1,15 @@
+#root{
+  background-color: #FFEFE0;
+  height: 100vh;
+  
+}
+
+.grid-row{
+  border: 1px solid #FFD39F;
+  background-color: #FFE0BA;
+  padding: 5px;
+}
+
+.icon-large{
+  font-size: 3em;
+}

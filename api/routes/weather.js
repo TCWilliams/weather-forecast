@@ -11,7 +11,8 @@ router.post('/', function(req, res) {
       res.send(response.data)
     })
     .catch(err => {
-      res.send({error});
+      console.log(err)
+      res.send({err});
     });
 });
 
