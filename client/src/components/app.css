@@ -1,13 +1,18 @@
 #root{
   background-color: #FFEFE0;
   height: 100vh;
+  padding: 1em;
   
+}
+
+#spinner{
+  background-color: #FFEFE0;
 }
 
 .grid-row{
   border: 1px solid #FFD39F;
   background-color: #FFE0BA;
-  padding: 5px;
+  padding: .25em;
 }
 
 .icon-large{

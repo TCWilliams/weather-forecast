@@ -2,7 +2,7 @@ import React from 'react'
 
 import Location from './Location'
 import CurrentWeather from './CurrentWeather'
-import './app.css'
+import DailyForecast from './DailyForecast'
 
 class App extends React.Component {
   render() {
@@ -11,6 +11,7 @@ class App extends React.Component {
         <div>
           <Location />
           <CurrentWeather />
+          <DailyForecast />
         </div>
       </div>
     )

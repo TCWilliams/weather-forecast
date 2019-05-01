@@ -2,22 +2,14 @@ import React from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 
+import Spinner from './Spinner'
+import { icons } from '../helpers'
+
 import { setWeather } from '../actions'
 import { setForecast } from '../actions'
 import './app.css'
 
-const icons = {
-  'clear-day': 'wi-day-sunny',
-  'clear-night': 'wi-night-clear',
-  'partly-cloudy-day': 'wi-day-cloudy',
-  'partly-cloudy-night': 'wi-night-cloudy',
-  'rain': 'wi-rain',
-  'snow': 'wi-snow',
-  'sleet': 'wi-sleet',
-  'wind': 'wi-windy',
-  'fog': 'wi-fog',
-  'cloudy': 'wi-cloudy',
-  }
+
 
 class CurrentWeather extends React.Component {
 
@@ -37,8 +29,15 @@ class CurrentWeather extends React.Component {
   }
 
   render() {
-    if (!this.props.forecast) {
-      return <div>No Weather Data</div>
+    if (!this.props.location && !this.props.weather) {
+       return <div></div>
+    }
+    if (this.props.location && !this.props.weather) {
+      return (
+        <div>
+          <Spinner text={'Getting weather data'} />
+        </div>
+      )
     }
     else {
       return (
@@ -66,11 +65,11 @@ class CurrentWeather extends React.Component {
             </div>
             <div className="row grid-row">
               <div className="col-sm">Pressure</div> 
-              <div className="col-sm">{this.props.weather.pressure}hPa</div>
+              <div className="col-sm">{this.props.weather.pressure} hPa</div>
             </div>
             <div className="row grid-row">
               <div className="col-sm">Rainfall</div>
-              <div className="col-sm">{this.props.weather.precipIntensity}mm/h</div>
+              <div className="col-sm">{this.props.weather.precipIntensity} mm/h</div>
             </div>
             <div className="row grid-row">
               <div className="col-sm">Chance of rain</div>
@@ -78,6 +77,7 @@ class CurrentWeather extends React.Component {
             </div>
           </div>
           </div>
+          <br />
         </div>
       )
     }

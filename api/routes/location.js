@@ -3,8 +3,6 @@ var router = express.Router();
 const axios = require('axios');
 
 const baseUrl = `https://maps.googleapis.com/maps/api/geocode/json?`
-
-
 const secret = 'AIzaSyCJeEtjRLiARW3H4umsp1aLkM3VObA6p8k'
 
 // location from string
