@@ -2,6 +2,7 @@
   background-color: #FFEFE0;
   height: 100vh;
   padding: 1em;
+  overflow: auto;
   
 }
 
@@ -12,7 +13,7 @@
 .grid-row{
   border: 1px solid #FFD39F;
   background-color: #FFE0BA;
-  padding: .25em;
+  padding: .15em;
 }
 
 .icon-large{

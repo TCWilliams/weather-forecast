@@ -37,7 +37,6 @@ class Location extends React.Component {
     this.props.setLocation(location)
   }
 
-
   render() {
     if (!this.props.location) {
       return (
@@ -54,7 +53,6 @@ class Location extends React.Component {
     )
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {

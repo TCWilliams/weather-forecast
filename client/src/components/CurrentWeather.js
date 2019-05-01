@@ -7,7 +7,7 @@ import { icons } from '../helpers'
 
 import { setWeather } from '../actions'
 import { setForecast } from '../actions'
-import './app.css'
+import '../styles/app.css'
 
 
 

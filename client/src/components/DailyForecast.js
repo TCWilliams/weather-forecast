@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { icons } from '../helpers'
-import './app.css'
+import '../styles/app.css'
 
 class DailyForecast extends React.Component {
 
@@ -56,11 +56,10 @@ class DailyForecast extends React.Component {
   }
 
   render() {
-    if (!this.props.forecast) return <div></div>
-    console.log(this.props.forecast)
-    console.log(this.buildForecastDisplay())
+    if (!this.props.forecast) {
+      return <div></div>
+    }
     return (
-
       <div className="container">
         <div className="mx-auto col-6 text-center">
           <h4>{this.props.forecast.summary}</h4>
