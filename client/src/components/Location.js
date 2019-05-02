@@ -2,24 +2,23 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Spinner from './Spinner'
-
-import { setInitialLocation } from '../actions'
+import { setUserLocation } from '../actions'
 import { setLocation } from '../actions'
 
 class Location extends React.Component {
 
   componentDidMount() {
     if (window.navigator.geolocation) {
-      this.props.setInitialLocation()
+      this.props.setUserLocation()
     }
   }
 
   componentDidUpdate() {
-    if (!this.props.location || (JSON.stringify(this.props.location) !== JSON.stringify(this.props.location))) {
-      this.props.setLocation(this.props.initialLocation)
+    if (!this.props.location) {
+      this.props.setLocation(this.props.userLocation)
     }
   }
- 
+
   render() {
     if (!this.props.location) {
       return (
@@ -39,7 +38,7 @@ class Location extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    initialLocation: state.initialLocation,
+    userLocation: state.userLocation,
     location: state.location
   }
 }
@@ -47,7 +46,7 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps,
   {
-    setInitialLocation,
+    setUserLocation,
     setLocation
   }
 )(Location)

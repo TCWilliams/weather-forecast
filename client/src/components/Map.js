@@ -1,0 +1,61 @@
+import React from 'react'
+import { connect } from 'react-redux'
+import { compose, withProps } from "recompose"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+
+import { setLocation } from '../actions'
+
+const MapComponent = compose(
+  withProps({
+    googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB85kTWqZHLeX_lc9aPMfg539ME280awPk&v=3.exp&libraries=geometry,drawing,places',
+    loadingElement: <div style={{ height: '100%' }} />,
+    containerElement: <div style={{ height: '25em', width: '25em' }} />,
+    mapElement: <div style={{ height: '100%' }} />,
+  }),
+  withScriptjs,
+  withGoogleMap
+)(props => {
+  if (!props.location) return <div></div>
+  return (
+    <GoogleMap
+      defaultZoom={8}
+      defaultCenter={{ lat: props.location.coords.lat, lng: props.location.coords.lng }}
+    >
+      <Marker
+        draggable
+        position={{ lat: props.location.coords.lat, lng: props.location.coords.lng }}
+        onDragEnd={props.onMarkerDragEnd}
+      />
+    </GoogleMap>
+  )
+})
+
+class Map extends React.PureComponent {
+  handleMarkerDragEnd = (e) => {
+    this.props.setLocation({
+      latitude: e.latLng.lat(),
+      longitude: e.latLng.lng()
+    })
+  }
+
+  render() {
+    if (!this.props.location) return <div></div>
+    return (
+      <MapComponent
+        location={this.props.location}
+        onMarkerDragEnd={this.handleMarkerDragEnd}
+      />
+    )
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    location: state.location
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  { setLocation }
+)(Map)

@@ -6,6 +6,10 @@
   
 }
 
+#map {
+  height: 20%;
+}
+
 #spinner{
   background-color: #FFEFE0;
 }

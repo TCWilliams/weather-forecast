@@ -6,30 +6,12 @@ const baseUrl = `https://maps.googleapis.com/maps/api/geocode/json?`
 const secret = 'AIzaSyCJeEtjRLiARW3H4umsp1aLkM3VObA6p8k'
 
 
-router.post('./', async (req, res) => {
-  console.log('req.body', req.body)
-})
-
-
-// location from string
-router.post('/fromName', function(req, res) {
-  console.log('Location', req.body)
-  console.log(`${baseUrl}&key=${secret}`)
-  axios.get(`${baseUrl}address=${req.body.location}&key=${secret}`)
-    .then(response => {
-      res.send(response.data)
-    })
-    .catch(err => {
-      console.log(err.response.data)
-      res.send(err.response.data);
-    });
-});
 
 // locations from coordinates
-router.post('/fromCoords/', function(req, res) {
+router.post('/', function(req, res) {
   console.log('Location', req.body)
   console.log(`${baseUrl}&key=${secret}`)
-  axios.get(`${baseUrl}latlng=${req.body.lat},${req.body.lng}&key=${secret}`)
+  axios.get(`${baseUrl}latlng=${req.body.lat},${req.body.lng}&result_type=locality|political&key=${secret}`)
     .then(response => {
       res.send(response.data)
     })

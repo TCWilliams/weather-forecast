@@ -1,15 +1,41 @@
-export const setLocation = (location) => {
-  return {
-    type: 'SET_LOCATION',
-    payload: location
+import axios from 'axios'
+
+export const setUserLocation = () =>
+  dispatch => {
+    window.navigator.geolocation.getCurrentPosition(
+      location => {
+        dispatch({
+          type: 'SET_USER_LOCATION',
+          payload: location.coords
+        })
+      },
+      err => console.log(err),
+    )
   }
+
+export const setLocation = location => async dispatch => {
+  const { data } = await axios.post('http://localhost:9000/location', {
+    lat: location.latitude.toString(),
+    lng: location.longitude.toString()
+  })
+  
+  data.status !== 'ZERO_RESULTS' && dispatch({
+    type: 'SET_LOCATION', payload: {
+      name: data.results[0].formatted_address,
+      coords: data.results[0].geometry.location
+    }
+  })
 }
 
-export const setWeather = (weather) => {
-  return {
+export const setWeather = location => async dispatch => {
+  const { data } = await axios.post('http://localhost:9000/weather', {
+    latitude: JSON.stringify(location.coords.lat),
+    longitude: JSON.stringify(location.coords.lng)
+  }) 
+  dispatch({
     type: 'SET_WEATHER',
-    payload: weather
-  }
+    payload: data
+  })
 }
 
 export const setForecast = (forecast) => {
