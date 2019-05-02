@@ -5,8 +5,14 @@ const axios = require('axios');
 const baseUrl = `https://maps.googleapis.com/maps/api/geocode/json?`
 const secret = 'AIzaSyCJeEtjRLiARW3H4umsp1aLkM3VObA6p8k'
 
+
+router.post('./', async (req, res) => {
+  console.log('req.body', req.body)
+})
+
+
 // location from string
-router.post('/', function(req, res) {
+router.post('/fromName', function(req, res) {
   console.log('Location', req.body)
   console.log(`${baseUrl}&key=${secret}`)
   axios.get(`${baseUrl}address=${req.body.location}&key=${secret}`)
@@ -20,7 +26,7 @@ router.post('/', function(req, res) {
 });
 
 // locations from coordinates
-router.post('/reverse/', function(req, res) {
+router.post('/fromCoords/', function(req, res) {
   console.log('Location', req.body)
   console.log(`${baseUrl}&key=${secret}`)
   axios.get(`${baseUrl}latlng=${req.body.lat},${req.body.lng}&key=${secret}`)

@@ -1,42 +1,25 @@
 import React from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 
 import Spinner from './Spinner'
-import { setLocation } from '../actions'
 
+import { setInitialLocation } from '../actions'
+import { setLocation } from '../actions'
 
 class Location extends React.Component {
 
   componentDidMount() {
-    this.getLocation()
-  }
-
-  /*
-  Load users location initially
-  */
-  getLocation = () => {
     if (window.navigator.geolocation) {
-      window.navigator.geolocation.getCurrentPosition(
-        location => this.getLocationFromLatLon(location.coords),
-        err => console.log(err),
-      )
+      this.props.setInitialLocation()
     }
   }
 
-  getLocationFromLatLon = async ({ latitude, longitude }) => {
-    const { data } = await axios.post('http://localhost:9000/location/reverse', {
-      lat: latitude.toString(),
-      lng: longitude.toString()
-    })
-
-    const location = {
-      name: data.results[3].formatted_address,
-      coords: data.results[3].geometry.location
+  componentDidUpdate() {
+    if (!this.props.location || (JSON.stringify(this.props.location) !== JSON.stringify(this.props.location))) {
+      this.props.setLocation(this.props.initialLocation)
     }
-    this.props.setLocation(location)
   }
-
+ 
   render() {
     if (!this.props.location) {
       return (
@@ -56,11 +39,15 @@ class Location extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    initialLocation: state.initialLocation,
     location: state.location
   }
 }
 
 export default connect(
   mapStateToProps,
-  { setLocation }
+  {
+    setInitialLocation,
+    setLocation
+  }
 )(Location)
