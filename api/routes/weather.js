@@ -3,7 +3,7 @@ var router = express.Router();
 const axios = require('axios');
 
 const baseUrl = `https://api.darksky.net/forecast`
-const secret = '90c63c102338dddcbf0c94ca3bbd1da4'
+const secret = 'SECRET'
 
 router.post('/', function(req, res) {
   axios.get(`${baseUrl}/${secret}/${req.body.latitude},${req.body.longitude}?units=si`)
