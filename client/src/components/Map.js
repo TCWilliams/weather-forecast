@@ -41,10 +41,14 @@ class Map extends React.PureComponent {
   render() {
     if (!this.props.location) return <div></div>
     return (
-      <MapComponent
-        location={this.props.location}
-        onMarkerDragEnd={this.handleMarkerDragEnd}
-      />
+      <div className="container">
+        <div className="col-4 mx-auto">
+          <MapComponent
+            location={this.props.location}
+            onMarkerDragEnd={this.handleMarkerDragEnd}
+          />
+        </div>
+      </div>
     )
   }
 }
