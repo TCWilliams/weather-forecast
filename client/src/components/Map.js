@@ -3,14 +3,17 @@ import { connect } from 'react-redux'
 import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
+import config from '../config'
 import { setLocation } from '../actions'
+
+const apiKey = config.GOOGLE_API_KEY
 
 const MapComponent = compose(
   withProps({
-    googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=[SECRET]&v=3.exp&libraries=geometry,drawing,places',
+    googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`,
     loadingElement: <div style={{ height: '100%' }} />,
     containerElement: <div style={{ height: '25em', width: '100%' }} />,
-    mapElement: <div style={{ height: '100%' }} />,
+    mapElement: <div style={{ height: '100%' }} />, 
   }),
   withScriptjs,
   withGoogleMap
