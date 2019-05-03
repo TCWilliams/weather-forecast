@@ -7,9 +7,9 @@ import { setLocation } from '../actions'
 
 const MapComponent = compose(
   withProps({
-    googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB85kTWqZHLeX_lc9aPMfg539ME280awPk&v=3.exp&libraries=geometry,drawing,places',
+    googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyABFOtQL9xThk0kB7-TnphG5aatlzIvLX4&v=3.exp&libraries=geometry,drawing,places',
     loadingElement: <div style={{ height: '100%' }} />,
-    containerElement: <div style={{ height: '25em', width: '25em' }} />,
+    containerElement: <div style={{ height: '25em', width: '100%' }} />,
     mapElement: <div style={{ height: '100%' }} />,
   }),
   withScriptjs,
@@ -42,7 +42,7 @@ class Map extends React.PureComponent {
     if (!this.props.location) return <div></div>
     return (
       <div className="container">
-        <div className="col-4 mx-auto">
+        <div className="col-12 mx-auto">
           <MapComponent
             location={this.props.location}
             onMarkerDragEnd={this.handleMarkerDragEnd}
