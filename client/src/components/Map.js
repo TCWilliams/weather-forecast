@@ -6,7 +6,7 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-map
 import config from '../config'
 import { setLocation } from '../actions'
 
-const apiKey = config.GOOGLE_API_KEY
+const apiKey = 'AIzaSyABFOtQL9xThk0kB7-TnphG5aatlzIvLX4'//config.GOOGLE_API_KEY
 
 const MapComponent = compose(
   withProps({

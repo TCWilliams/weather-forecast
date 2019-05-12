@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 const axios = require('axios');
-import config from '../config'
+// import config from '../config'
 const baseUrl = `https://maps.googleapis.com/maps/api/geocode/json?`
-const secret = process.env.GOOGLE_API_KEY
+const secret = 'AIzaSyABFOtQL9xThk0kB7-TnphG5aatlzIvLX4'
 
 
 

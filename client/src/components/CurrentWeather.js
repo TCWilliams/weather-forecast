@@ -13,9 +13,24 @@ class CurrentWeather extends React.Component {
     if (this.props.location !== prevProps.location) {
       this.props.setWeather(this.props.location)
     }
-  }
+    console.log(window.esri.geometry.xyToLngLat(1898786, 5657292))
+    console.log(window.esri.geometry.lngLatToXY(-39.182382, 176.459465))
+    
+    // console.log('esri.geometry.lngLatToXY(-120, 33);', esri.geometry.lngLatToXY(-120, 33))
+    // require([
 
-  // TODO: create jsx in function
+    //   'esri/geometry/webMercatorUtils'
+
+    // ], function (webMercatorUtils) {
+    //   var normalizedVal = webMercatorUtils.xyToLngLat(42215329, 1321748);
+    //   console.log(normalizedVal); //returns 19.226, 11.789
+
+    //   var value = webMercatorUtils.xyToLngLat(42215329, 1321748, true);
+    //   console.log(value); // returns 379.22, 11.78
+
+
+    // })
+  }
   render() {
     if (!this.props.location && !this.props.weather) {
       return <div></div>

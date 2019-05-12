@@ -6,6 +6,8 @@ import CurrentWeather from './CurrentWeather'
 import DailyForecast from './DailyForecast'
 
 class App extends React.Component {
+
+  
   render() {
     return (
       <div>
