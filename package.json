@@ -1,0 +1,21 @@
+{
+  "name": "weather-forecast",
+  "version": "1.0.0",
+  "description": "React Redux app to fetch and display weather information at selected location",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "cd api && node index.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TCWilliams/weather-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TCWilliams/weather-app/issues"
+  },
+  "homepage": "https://github.com/TCWilliams/weather-app#readme"
+}
