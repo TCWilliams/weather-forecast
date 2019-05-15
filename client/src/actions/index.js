@@ -14,7 +14,8 @@ export const setUserLocation = () =>
   }
 
 export const setLocation = location => async dispatch => {
-  const { data } = await axios.post('http://localhost:9000/location', {
+  console.log('LOCATION', location)
+  const { data } = await axios.post('api/location', {
     lat: location.latitude.toString(),
     lng: location.longitude.toString()
   })
@@ -28,7 +29,7 @@ export const setLocation = location => async dispatch => {
 }
 
 export const setWeather = location => async dispatch => {
-  const { data } = await axios.post('http://localhost:9000/weather', {
+  const { data } = await axios.post('api/weather', {
     latitude: JSON.stringify(location.coords.lat),
     longitude: JSON.stringify(location.coords.lng)
   }) 

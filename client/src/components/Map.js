@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
-import config from '../config'
 import { setLocation } from '../actions'
 
 const apiKey = 'AIzaSyABFOtQL9xThk0kB7-TnphG5aatlzIvLX4'//config.GOOGLE_API_KEY
