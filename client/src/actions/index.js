@@ -14,12 +14,10 @@ export const setUserLocation = () =>
   }
 
 export const setLocation = location => async dispatch => {
-  console.log('LOCATION', location)
   const { data } = await axios.post('api/location', {
     lat: location.latitude.toString(),
     lng: location.longitude.toString()
   })
-  console.log('data', data)
   data.status !== 'ZERO_RESULTS' && dispatch({
     type: 'SET_LOCATION', payload: {
       name: data.results[0].formatted_address,
