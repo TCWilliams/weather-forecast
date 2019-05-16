@@ -9,8 +9,6 @@ import config from '../config'
 
 const apiKey = config.GOOGLE_API_KEY
 
-
-console.log('apiKey', apiKey)
 const MapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`,
