@@ -17,10 +17,14 @@ const googleApiKey = process.env.GOOGLE_API_KEY
 
 // locations from coordinates
 app.post('/api/location', async (req, res) => {
-  console.log('location', googleApiKey, `${googleBaseUrl}latlng=${req.body.lat},${req.body.lng}&result_type=locality|political&key=${googleApiKey}`)
-  console.log(`${googleBaseUrl}&key=${googleApiKey}`)
-  const response = await axios.get(`${googleBaseUrl}latlng=${req.body.lat},${req.body.lng}&result_type=locality|political&key=${googleApiKey}`)
-  res.send(response.data)
+  try {
+    const response = await axios.get(`${googleBaseUrl}latlng=${req.body.lat},${req.body.lng}&result_type=locality|political&key=${googleApiKey}`)
+    console.log(response.data)
+    res.send(response.data)
+  } catch(e) {
+    console.log(e)
+    res.send('error getting location', e)
+  }
 });
 
 

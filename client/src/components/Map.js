@@ -4,9 +4,13 @@ import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
 import { setLocation } from '../actions'
+import config from '../config'
 
-const apiKey = 'AIzaSyABFOtQL9xThk0kB7-TnphG5aatlzIvLX4'//config.GOOGLE_API_KEY
 
+const apiKey = config.GOOGLE_API_KEY
+
+
+console.log('apiKey', apiKey)
 const MapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`,
@@ -22,6 +26,7 @@ const MapComponent = compose(
     <GoogleMap
       defaultZoom={8}
       defaultCenter={{ lat: props.location.coords.lat, lng: props.location.coords.lng }}
+      options={{streetViewControl: false, fullScreen: false}}
     >
       <Marker
         draggable

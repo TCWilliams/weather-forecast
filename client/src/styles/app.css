@@ -1,5 +1,5 @@
 #root{
-  background-color: #FFEFE0;
+  background-color: rgba(0, 150, 255, .2);
   height: 100vh;
   padding: 1em;
   overflow: auto;
@@ -11,12 +11,12 @@
 }
 
 #spinner{
-  background-color: #FFEFE0;
+  background-color: rgba(0, 0, 0, .0);
 }
 
 .grid-row{
-  border: 1px solid #FFD39F;
-  background-color: #FFE0BA;
+  border: 1px solid rgba(155, 155, 155, 0.6);
+  background-color: rgba(155, 155, 155, 0.3);
   padding: .15em;
 }
 

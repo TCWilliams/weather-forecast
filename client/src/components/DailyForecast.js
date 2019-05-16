@@ -44,7 +44,7 @@ class DailyForecast extends React.Component {
             </div>
             <div className="row grid-row">
               <div className="col-sm">Chance of rain</div>
-              <div className="col-sm">{e.precipProbability * 100}%</div>
+              <div className="col-sm">{Math.ceil(e.precipProbability * 100)}%</div>
             </div>
           </div>
           <br />
