@@ -4,10 +4,10 @@ import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
 import { setLocation } from '../actions'
-import config from '../config'
+// import config from '../config'
 
 
-const apiKey = process.env.GOOGLE_API_KEY || config.GOOGLE_API_KEY
+const apiKey = process.env.GOOGLE_API_KEY // || config.GOOGLE_API_KEY
 
 const MapComponent = compose(
   withProps({
