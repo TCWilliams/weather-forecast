@@ -19,8 +19,9 @@ class CurrentWeather extends React.Component {
     return (
       <div>
         <div className="container">
-          <div className="col-4 mx-auto">
-            <div className="row grid-row">
+          <div className="col-sm-6 mx-auto">
+            <div className="row grid-row"
+                 style={{padding: '1em'}}>
               <div className={`mx-auto wi ${icons[this.props.weather.currently.icon]} icon-large`}></div>
             </div>
             <div className="row grid-row">

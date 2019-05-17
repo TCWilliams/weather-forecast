@@ -17,9 +17,22 @@
 .grid-row{
   border: 1px solid rgba(155, 155, 155, 0.6);
   background-color: rgba(155, 155, 155, 0.3);
-  padding: .15em;
+  padding: .2em;
 }
 
 .icon-large{
   font-size: 3em;
+}
+
+.week-forecast{
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: 100%;
+}
+
+.day-forecast {
+  margin: .5em;
+  display: inline-block;
+  white-space: pre-wrap;
 }
